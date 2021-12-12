@@ -34,7 +34,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @if (Auth::user())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('diary.index') }}">Diary</a>
+                        </li>
+                        @endif
+                        @if (Auth::user()  && Auth::user()->level == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.index') }}">User</a>
+                        </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
