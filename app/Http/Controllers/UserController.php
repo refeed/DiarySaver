@@ -74,7 +74,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        // $user->level = $request->level;
+        $user->level = $request->level;
         $user->save();
         return redirect(route('user.index'))->with('msg', 'User successfully updated');
     }
