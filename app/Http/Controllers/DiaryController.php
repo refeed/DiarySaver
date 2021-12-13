@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Diary;
+use App\Image;
 use Illuminate\Http\Request;
 
 class DiaryController extends Controller
@@ -50,6 +51,20 @@ class DiaryController extends Controller
         $diary->content = $request->content;
         $diary->user_id = $request->user()->id;
         $diary->save();
+
+        if ($request->hasFile('image')) {
+            $image = new Image();
+            $image->diary_id = $diary->id;
+
+            $image_binary = $request->image;
+            $filename = time() . "." . $image_binary->getClientOriginalName();
+            \ImageIntervention::make($image_binary)->resize(200, 150)->save(public_path('thumb/' . $filename));
+            $image_binary->move("images/", $filename);
+
+            $image->image_path = $filename;
+            $image->save();
+        }
+
         return redirect(route('diary.index'))->with('msg', 'Diary successfully saved');
     }
 

@@ -12,4 +12,12 @@ class Diary extends Model
         'content' => 'required',
     ];
 
+    public function getImagePath() {
+        $images =  $this->hasOne('App\Image', 'diary_id', 'id')->get();
+        if (count($images) > 0) {
+            return asset('images/' . $images[0]->image_path);
+        }
+        return null;
+    }
+
 }
