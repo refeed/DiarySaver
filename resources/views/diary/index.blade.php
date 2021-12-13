@@ -33,6 +33,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $diaries->links() }}
     </div>
 </div>
 @endsection

@@ -21,8 +21,7 @@ class DiaryController extends Controller
     {
         $diaries = Diary::select('id', 'content', 'created_at')
             ->where('user_id', $request->user()->id)
-            ->get()
-            ->sortByDesc('created_at');
+            ->paginate(5);
 
         return view('diary.index', compact('diaries'));
     }
