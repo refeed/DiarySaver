@@ -17,9 +17,12 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $images = Image::all();
+        $images = Image::select('images.id', 'diary_id', 'image_path')
+            ->join('diaries', 'diaries.id', '=', 'images.diary_id')
+            ->where('diaries.user_id', $request->user()->id)
+            ->get();
         return view('image.index', compact('images'));
     }
 
