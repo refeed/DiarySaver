@@ -76,6 +76,7 @@ class DiaryController extends Controller
      */
     public function show($id)
     {
+        #FIXME: Needs to verify if the current user is the owner of the diary
         $diary = Diary::find($id);
         return view('diary.show', compact('diary'));
     }
