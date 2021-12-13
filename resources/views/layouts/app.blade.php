@@ -38,6 +38,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('diary.index') }}">Diary</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('image.index') }}">Image</a>
+                        </li>
                         @endif
                         @if (Auth::user()  && Auth::user()->level == 'admin')
                         <li class="nav-item">

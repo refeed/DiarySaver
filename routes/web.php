@@ -23,3 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('diary', 'DiaryController');
 Route::resource('user', 'UserController');
+Route::resource('image', 'ImageController');
